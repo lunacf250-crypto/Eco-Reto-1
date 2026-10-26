@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos Relacional</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<header class="encabezado">
+    <div class="icono">🗄️</div>
+
+    <div class="titulo">
+        <h1>Base de Datos Relacional</h1>
+        <h2>y sus Relaciones</h2>
+    </div>
+
+    <div class="definicion">
+        <h2>¿Qué es?</h2>
+        <p>
+            Una base de datos relacional es un conjunto de datos
+            organizados en tablas que se relacionan entre sí mediante
+            claves. Permite almacenar información estructurada,
+            evitar duplicidad de datos y mantener su integridad.
+        </p>
+    </div>
+</header>
+
+<main class="contenedor">
+
+    <!-- SECCION 1 -->
+    <section class="seccion">
+        <h2 class="barra azul">1. Elementos de una base de datos relacional</h2>
+
+        <div class="elemento">
+            <span class="icono-elemento">▦</span>
+            <div>
+                <h3>Tablas</h3>
+                <p>Organizan los datos en filas y columnas. Cada tabla representa un tema.</p>
+            </div>
+        </div>
+
+        <div class="elemento rosa">
+            <span class="icono-elemento">▤</span>
+            <div>
+                <h3>Campos</h3>
+                <p>Son las columnas de la tabla. Definen el tipo de dato: texto, número, fecha, etc.</p>
+            </div>
+        </div>
+
+        <div class="elemento verde">
+            <span class="icono-elemento">▧</span>
+            <div>
+                <h3>Registros</h3>
+                <p>Son las filas de la tabla. Cada registro contiene un conjunto de datos.</p>
+            </div>
+        </div>
+
+        <div class="elemento rojo">
+            <span class="icono-elemento">🔑</span>
+            <div>
+                <h3>Clave primaria (PK)</h3>
+                <p>Identifica de forma única cada registro. No se repite y no puede ser nula.</p>
+            </div>
+        </div>
+
+        <div class="elemento amarillo">
+            <span class="icono-elemento">🗝️</span>
+            <div>
+                <h3>Clave foránea (FK)</h3>
+                <p>Es un campo que se relaciona con la clave primaria de otra tabla.</p>
+            </div>
+        </div>
+
+        <div class="elemento morado">
+            <span class="icono-elemento">🔗</span>
+            <div>
+                <h3>Relaciones</h3>
+                <p>Son los vínculos entre tablas: uno a uno (1:1), uno a muchos (1:N) y muchos a muchos (N:M).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION 2 -->
+    <section class="seccion">
+        <h2 class="barra azul">2. Tipos de relaciones</h2>
+
+        <div class="tarjetas">
+
+            <article class="tarjeta">
+                <h3 class="barra verde">Relación 1 a 1 (1:1)</h3>
+
+                <p>
+                    Un registro de una tabla se relaciona con un solo
+                    registro de otra tabla y viceversa.
+                </p>
+
+                <div class="diagrama">
+                    <div class="tabla azul-claro">
+                        <h4>Persona</h4>
+                        <p>id_persona <b>PK</b></p>
+                        <p>nombre</p>
+                        <p>correo</p>
+                    </div>
+
+                    <span class="conexion">1 ─── 1</span>
+
+                    <div class="tabla rosa-claro">
+                        <h4>Perfil</h4>
+                        <p>id_perfil <b>PK</b></p>
+                        <p>id_persona <b>FK</b></p>
+                        <p>foto</p>
+                        <p>fecha_registro</p>
+                    </div>
+                </div>
+
+                <div class="ejemplo">
+                    <b>Ejemplo:</b> Cada persona tiene un solo perfil
+                    y cada perfil pertenece a una sola persona.
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <h3 class="barra azul">Relación 1 a muchos (1:N)</h3>
+
+                <p>
+                    Un registro de una tabla puede relacionarse con
+                    varios registros de otra tabla, pero cada registro
+                    de la segunda se relaciona con uno de la primera.
+                </p>
+
+                <div class="diagrama">
+                    <div class="tabla azul-claro">
+                        <h4>Artista</h4>
+                        <p>id_artista <b>PK</b></p>
+                        <p>nombre</p>
+                        <p>nacionalidad</p>
+                    </div>
+
+                    <span class="conexion">1 ─── ∞</span>
+
+                    <div class="tabla naranja-claro">
+                        <h4>Álbum</h4>
+                        <p>id_album <b>PK</b></p>
+                        <p>titulo</p>
+                        <p>año_lanzamiento</p>
+                        <p>id_artista <b>FK</b></p>
+                    </div>
+                </div>
+
+                <div class="ejemplo">
+                    <b>Ejemplo:</b> Un artista puede tener muchos
+                    álbumes, pero cada álbum pertenece a un solo artista.
+                </div>
+            </article>
+
+            <article class="tarjeta">
+                <h3 class="barra morado">Relación muchos a muchos (N:M)</h3>
+
+                <p>
+                    Varios registros de una tabla pueden relacionarse
+                    con varios registros de otra tabla. Se utiliza una
+                    tabla intermedia.
+                </p>
+
+                <div class="diagrama">
+                    <div class="tabla azul-claro">
+                        <h4>Artista</h4>
+                        <p>id_artista <b>PK</b></p>
+                        <p>nombre</p>
+                    </div>
+
+                    <span class="conexion">1 ─ ∞</span>
+
+                    <div class="tabla rosa-claro">
+                        <h4>Artista_Cancion</h4>
+                        <p>id_artista <b>FK</b></p>
+                        <p>id_cancion <b>FK</b></p>
+                    </div>
+
+                    <span class="conexion">∞ ─ 1</span>
+
+                    <div class="tabla verde-claro">
+                        <h4>Canción</h4>
+                        <p>id_cancion <b>PK</b></p>
+                        <p>titulo</p>
+                        <p>duracion</p>
+                    </div>
+                </div>
+
+                <div class="ejemplo">
+                    <b>Ejemplo:</b> Un artista puede interpretar
+                    muchas canciones y una canción puede ser
+                    interpretada por varios artistas.
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- SECCION 3 -->
+    <section class="seccion">
+        <h2 class="barra azul">3. ¿Cómo se leen las relaciones?</h2>
+
+        <p>
+            En un diagrama de base de datos, las relaciones se
+            representan con líneas y símbolos.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Símbolo</th>
+                    <th>Significado</th>
+                    <th>Ejemplo</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Uno</td>
+                    <td>Una persona tiene un perfil.</td>
+                </tr>
+
+                <tr>
+                    <td>N o ∞</td>
+                    <td>Muchos</td>
+                    <td>Un artista tiene muchos álbumes.</td>
+                </tr>
+
+                <tr>
+                    <td>0..1</td>
+                    <td>Cero o uno (opcional)</td>
+                    <td>Una persona puede tener un perfil opcional.</td>
+                </tr>
+
+                <tr>
+                    <td>1..N</td>
+                    <td>Uno o muchos</td>
+                    <td>Un álbum tiene una o varias canciones.</td>
+                </tr>
+
+                <tr>
+                    <td>0..N</td>
+                    <td>Cero o muchos</td>
+                    <td>Un artista puede tener cero o muchos álbumes.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="ejemplo">
+            <b>Importante:</b> PK significa clave primaria y FK significa
+            clave foránea. Los símbolos pueden variar según la notación
+            utilizada en el diagrama.
+        </div>
+    </section>
+
+    <!-- SECCION 4 -->
+    <section class="seccion">
+        <h2 class="barra azul">4. Ejemplo: Base de datos de música 🎵</h2>
+
+        <h3 class="barra azul-claro">Tabla: artistas</h3>
+
+        <div class="tabla-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id_artista (PK)</th>
+                        <th>nombre</th>
+                        <th>nacionalidad</th>
+                        <th>género_musical</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Coldplay</td>
+                        <td>Británica</td>
+                        <td>Rock alternativo</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Shakira</td>
+                        <td>Colombiana</td>
+                        <td>Pop latino</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Juanes</td>
+                        <td>Colombiana</td>
+                        <td>Rock latino</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="barra naranja">Tabla: álbumes</h3>
+
+        <div class="tabla-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id_album (PK)</th>
+                        <th>titulo</th>
+                        <th>año_lanzamiento</th>
+                        <th>id_artista (FK)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Parachutes</td>
+                        <td>2000</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>El Dorado</td>
+                        <td>2017</td>
+                        <td>2</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Fíjate Bien</td>
+                        <td>2000</td>
+                        <td>3</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Vida Cotidiana</td>
+                        <td>2020</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="barra verde">Tabla: canciones</h3>
+
+        <div class="tabla-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id_cancion (PK)</th>
+                        <th>titulo</th>
+                        <th>duracion</th>
+                        <th>id_album (FK)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Yellow</td>
+                        <td>4:29</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Clocks</td>
+                        <td>5:07</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>La Bicicleta</td>
+                        <td>3:47</td>
+                        <td>3</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Me Enamora</td>
+                        <td>3:24</td>
+                        <td>3</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>A Dios le Pido</td>
+                        <td>3:26</td>
+                        <td>4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="barra rosa-fuerte">Diagrama entidad-relación</h3>
+
+        <div class="diagrama-vertical">
+
+            <div class="tabla diagrama-tabla azul-claro">
+                <h4>ARTISTAS</h4>
+                <p>id_artista (PK)</p>
+                <p>nombre</p>
+                <p>nacionalidad</p>
+                <p>genero_musical</p>
+            </div>
+
+            <div class="flecha">
+                <span>1</span>
+                <span>│</span>
+                <span>▼</span>
+                <b>Un artista tiene muchos álbumes</b>
+                <span>∞</span>
+            </div>
+
+            <div class="tabla diagrama-tabla naranja-claro">
+                <h4>ÁLBUMES</h4>
+                <p>id_album (PK)</p>
+                <p>titulo</p>
+                <p>año_lanzamiento</p>
+                <p>id_artista (FK)</p>
+            </div>
+
+            <div class="flecha">
+                <span>1</span>
+                <span>│</span>
+                <span>▼</span>
+                <b>Un álbum contiene muchas canciones</b>
+                <span>∞</span>
+            </div>
+
+            <div class="tabla diagrama-tabla verde-claro">
+                <h4>CANCIONES</h4>
+                <p>id_cancion (PK)</p>
+                <p>titulo</p>
+                <p>duracion</p>
+                <p>id_album (FK)</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECCION 5 -->
+    <section class="seccion">
+        <h2 class="barra verde">5. Ventajas de una base de datos relacional</h2>
+
+        <ul class="ventajas">
+            <li>✔ Información organizada y consistente.</li>
+            <li>✔ Evita la duplicidad de datos.</li>
+            <li>✔ Facilita la consulta de información.</li>
+            <li>✔ Mantiene la integridad de los datos.</li>
+            <li>✔ Permite establecer relaciones entre tablas.</li>
+            <li>✔ Se utiliza en música, tiendas, escuelas y muchas otras aplicaciones.</li>
+        </ul>
+    </section>
+
+    <!-- SECCION 6 -->
+    <section class="seccion conclusion">
+        <h2 class="barra morado">6. Conclusión</h2>
+
+        <p>
+            Una base de datos relacional permite organizar la información
+            en tablas y relacionarlas mediante claves. Esto facilita
+            la administración, consulta y análisis de los datos.
+            En el ejemplo musical, podemos conocer qué canciones
+            pertenecen a cada álbum y qué álbumes son de cada artista.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>Base de Datos Relacional | Proyecto realizado con HTML y CSS</p>
+</footer>
+
+</body>
+</html>
